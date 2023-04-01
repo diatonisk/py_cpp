@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Py_CPP",
+			"command": "python3 -m pip install ${workspaceFolder}",
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "Python build py_cpp"
+		},
+		{
+			"label": "Test Py_CPP",
+			"command": "python3 -m unittest discover -s START ${workspaceFolder}/py_cpp/tests",
+			"type": "shell",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "Python test py_cpp"
+		}
+	]
+}
