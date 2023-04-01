@@ -4,7 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from setuptools import Extension, setup
+from setuptools import Extension, find_packages, setup
 from setuptools.command.build_ext import build_ext
 
 # Convert distutils Windows platform specifiers to CMake -A arguments
@@ -19,6 +19,8 @@ PLAT_TO_CMAKE = {
 # A CMakeExtension needs a sourcedir instead of a file list.
 # The name must be the _single_ output extension from the CMake build.
 # If you need multiple extensions, see scikit-build.
+
+
 class CMakeExtension(Extension):
     def __init__(self, name: str, sourcedir: str = "") -> None:
         super().__init__(name, sources=[])
@@ -131,16 +133,10 @@ class CMakeBuild(build_ext):
 # The information here can also be placed in setup.cfg - better separation of
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
-    name='py_cpp',
-    version='1.0.0',
-    url='https://github.com/diatonisk/py_cpp',
-    author='Robin',
-    author_email='none@gmail.com',
-    description='A simple example showcasing how to combine Python with C++',
-    long_description="TODO",
-    ext_modules=[CMakeExtension("cmake_example")],
+    packages=find_packages(),
+    ext_modules=[CMakeExtension(
+        'py_cpp', '/workspaces/py_cpp')],
     cmdclass={"build_ext": CMakeBuild},
+    package_data={"py_cpp.core": ["*.so", "*.dll"]},
     zip_safe=False,
-    extras_require={"test": ["unittest"]},
-    python_requires=">=3.7",
 )

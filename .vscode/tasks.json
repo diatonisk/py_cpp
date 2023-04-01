@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"label": "Build Py_CPP",
-			"command": "python3 -m pip install ${workspaceFolder}",
+			"command": "python3 -m build",
 			"type": "shell",
 			"group": {
 				"kind": "build",

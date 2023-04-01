@@ -7,7 +7,7 @@ int add(int i, int j)
     return i + j;
 }
 
-PYBIND11_MODULE(example, m)
+PYBIND11_MODULE(py_cpp_add, m)
 {
     m.doc() = "pybind11 example plugin"; // optional module docstring
 
