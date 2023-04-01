@@ -7,6 +7,9 @@ from pathlib import Path
 from setuptools import Extension, find_packages, setup
 from setuptools.command.build_ext import build_ext
 
+# The contents of setup.py is primarily based on the pybind11 example available in the link below:
+# https://github.com/pybind/cmake_example
+
 # Convert distutils Windows platform specifiers to CMake -A arguments
 PLAT_TO_CMAKE = {
     "win32": "Win32",
@@ -135,7 +138,7 @@ class CMakeBuild(build_ext):
 setup(
     packages=find_packages(),
     ext_modules=[CMakeExtension(
-        'py_cpp', '/workspaces/py_cpp')],
+        'py_cpp', os.path.join(os.environ.get('WORKSPACE')))],
     cmdclass={"build_ext": CMakeBuild},
     package_data={"py_cpp.core": ["*.so", "*.dll"]},
     zip_safe=False,
